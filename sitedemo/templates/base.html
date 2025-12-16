@@ -8,6 +8,7 @@
 
     {# Ici on peut charger un fichier CSS dans /static/ plus tard si on veut #}
     {# <link rel="stylesheet" href="{% static 'css/style.css' %}"> #}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     {# Styles simples intégrés pour l'exemple #}
     <style>
@@ -164,6 +165,7 @@
             justify-content: center;
             font-size: 0.9rem;
             color: #e5e7eb;
+            transition: all 0.25s ease;
         }
 
         .social-icon:hover {
@@ -264,11 +266,17 @@
                 <h4>Suivez-nous</h4>
                 <p style="font-size:0.9rem; color:#9ca3af;">Retrouvez-nous sur les réseaux sociaux :</p>
                 <div class="social-icons">
-                    <!-- Icônes sociales simples (texte pour l'exemple) -->
-                    <a href="#" class="social-icon" aria-label="Facebook">F</a>
-                    <a href="#" class="social-icon" aria-label="LinkedIn">in</a>
-                    <a href="#" class="social-icon" aria-label="Instagram">IG</a>
+                    <a href="https://www.facebook.com/EcoVoyage" class="social-icon" aria-label="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/EcoVoyage" class="social-icon" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://www.instagram.com//EcoVoyage" class="social-icon" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
                 </div>
+
             </div>
         </div>
 
