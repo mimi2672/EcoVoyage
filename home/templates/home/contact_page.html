@@ -21,22 +21,27 @@
     }
 
     .contact-intro-text {
-        font-size: 0.95rem;
-        color: #4b5563;
+        font-size: 0.90rem;
+        color: #eff1f5;
         margin-bottom: 0.75rem;
+        font-weight: 700; /* texte en gras */
     }
 
     .contact-infos {
-        font-size: 0.95rem;
-        color: #4b5563;
+        font-size: 1rem;
+        color: #e5e7eb;
     }
 
     .contact-card {
-        background: white;
-        border-radius: 1rem;
-        padding: 1.5rem;
-        border: 1px solid #e5e7eb;
-    }
+    background: rgba(255, 255, 255, 0.08); /* blanc très léger et transparent */
+    backdrop-filter: blur(6px); /* effet verre dépoli */
+    border-radius: 1rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* bordure subtile */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15); /* ombre douce */
+    color: #ffffff; /* texte blanc lisible */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); /* meilleure lisibilité */
+}
 
     .contact-form-group {
         margin-bottom: 1rem;
@@ -44,7 +49,7 @@
 
     .contact-label {
         display: block;
-        font-size: 0.9rem;
+        font-size: 1.9rem;
         margin-bottom: 0.35rem;
     }
 
@@ -54,7 +59,7 @@
         padding: 0.6rem 0.75rem;
         border-radius: 0.75rem;
         border: 1px solid #d1d5db;
-        font-size: 0.9rem;
+        font-size: 1.9rem;
         font-family: inherit;
     }
 
@@ -62,8 +67,15 @@
         resize: vertical;
     }
 
+    body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3); /* voile sombre */
+    z-index: -1;
+}
     .form-errors {
-        color: #b91c1c;
+        color: #efeded41;
         font-size: 0.9rem;
         margin-bottom: 0.75rem;
     }
@@ -78,7 +90,7 @@
         font-size: 0.9rem;
         margin-bottom: 0.35rem;
         font-weight: 500;
-        color: #374151;
+        color: #e9ecf0;
     }
 
     /* Style inputs et textarea */
@@ -90,10 +102,10 @@
         width: 100%;
         padding: 0.6rem 0.75rem;
         border-radius: 0.75rem;
-        border: 1px solid #d1d5db;
+        border: 1px solid #eef0f4e7;
         font-size: 0.9rem;
         font-family: inherit;
-        background: white;
+        background: rgba(255, 255, 255, 0.432);
     }
 
     /* Effet focus */
@@ -145,7 +157,6 @@
                     {{ page.contact_text|richtext }}
                 {% else %}
                     <p class="contact-intro-text">
-                        Ce formulaire peut vous servir de base pour une vraie page contact. Vous pourrez ensuite le relier à un modèle Wagtail ou à un système d’envoi d’email.
                     </p>
                 {% endif %}
 

@@ -18,12 +18,22 @@
             padding: 0;
         }
 
-        body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            color: #1f2933;
-            background-color: #f5f7fa;
-            line-height: 1.6;
-        }
+      body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: #e0e0e0ea;
+    font-size: 16px; /* taille de base */
+}
+            
+     body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url('https://i.pinimg.com/originals/53/d9/11/53d911e0dc47ec137893917e90699cef.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 1; /* transparence douce */
+    z-index: -1;
+}
 
         a {
             text-decoration: none;
@@ -31,13 +41,14 @@
         }
 
         /* Layout */
-        header {
-            background: white;
-            border-bottom: 1px solid #e5e7eb;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
+   header {
+    background: rgba(239, 236, 236, 0); /* semi-transparent */
+    border-bottom: 0,80px solid #e6ebe5;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    backdrop-filter: blur(6px); /* effet de flou */
+}
 
         .container {
             max-width: 1100px;
@@ -53,7 +64,7 @@
         }
 
         .logo {
-            font-weight: 700;
+            font-weight: 800;
             font-size: 1.25rem;
         }
 
@@ -69,38 +80,41 @@
         }
 
         .nav-links a:hover {
-            border-bottom-color: #3b82f6;
+            border-bottom-color: #f9f9f9;
         }
 
         .btn-primary {
             display: inline-block;
             padding: 0.75rem 1.4rem;
             border-radius: 999px;
-            background: linear-gradient(135deg, #2563eb, #4f46e5);
+            background: linear-gradient(135deg,  #10a66aeb, #10a66aed);
             color: white;
             font-weight: 500;
             font-size: 0.95rem;
             border: none;
             cursor: pointer;
             transition: transform 0.15s ease, box-shadow 0.15s ease;
-            box-shadow: 0 10px 18px rgba(37, 99, 235, 0.25);
+            box-shadow: 0 10px 18px rgba(200, 233, 220, 0.25);
         }
 
         .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 14px 24px rgba(37, 99, 235, 0.35);
+            transform: translateY(5px);
+            box-shadow: 0 14px 24px rgba(0, 0, 0, 0.237);
         }
 
         main {
             min-height: 70vh;
         }
 
-        footer {
-            margin-top: 3rem;
-            padding: 2rem 0 1rem;
-            background: #111827;
-            color: #e5e7eb;
-        }
+     footer {
+    margin-top: 3rem;
+    padding: 5rem 0 3rem;
+   background: rgba(16, 4, 4, 0.557); /* fond très léger et lumineux */
+    backdrop-filter: blur(5px); /* effet verre dépoli */
+    padding: 3rem 0;
+    border-radius: 0,80rem;
+    color: #ffffff; /* texte blanc lisible */
+}
 
         .footer-top {
             display: flex;
@@ -109,7 +123,7 @@
             justify-content: space-between;
             align-items: flex-start;
             padding-bottom: 1.5rem;
-            border-bottom: 1px solid #374151;
+            border-bottom: 1px solid #9caeca;
         }
 
         .footer-column h4 {
@@ -127,7 +141,7 @@
 
         .footer-links a {
             font-size: 0.9rem;
-            color: #9ca3af;
+            color: #d6dae0;
         }
 
         .footer-links a:hover {
@@ -161,7 +175,7 @@
             text-align: center;
             margin-top: 1rem;
             font-size: 0.8rem;
-            color: #6b7280;
+            color: #ffffff;
         }
 
         /* Sections génériques */
@@ -170,13 +184,15 @@
         }
 
         .section-title {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             margin-bottom: 0.75rem;
+             color: #fdfeffe7;
+            
         }
 
         .section-subtitle {
-            font-size: 0.95rem;
-            color: #6b7280;
+            font-size: 1,8rem;
+            color: #fdfeffea;
         }
 
         /* Responsive */
@@ -204,12 +220,12 @@
         <nav class="nav">
             <div class="logo">
                 <!-- Logo / Nom du site -->
-                MonSite<span style="color:#3b82f6;">Pro</span>
+                Eco<span style="color:#f9f9f9;">Voyage</span>
             </div>
             <div class="nav-links">
                 <!-- Rappel navigation header (liens vers les pages principales) -->
                 <a href="/">Accueil</a>
-                <a href="/nos-services/">Nos services</a>
+                <a href="/nos-destinations/">Nos destinations</a>
                 <a href="/a-propos/">À propos</a>
                 <a href="/contact/">Contact</a>
             </div>
@@ -227,9 +243,9 @@
     <div class="container">
         <div class="footer-top">
             <div class="footer-column">
-                <h4>MonSitePro</h4>
+                <h4>EcoVoyage</h4>
                 <p style="font-size:0.9rem; color:#9ca3af;">
-                    Un exemple de site vitrine moderne avec Wagtail.
+                    Découvrez le monde de manière responsable et durable.
                 </p>
             </div>
 
@@ -238,7 +254,7 @@
                 <ul class="footer-links">
                     <!-- Rappel navigation dans le footer -->
                     <li><a href="/">Accueil</a></li>
-                    <li><a href="/nos-services/">Nos services</a></li>
+                    <li><a href="/nos-destinations/">Nos destinations</a></li>
                     <li><a href="/a-propos/">À propos</a></li>
                     <li><a href="/contact/">Contact</a></li>
                 </ul>
@@ -257,7 +273,7 @@
         </div>
 
         <div class="footer-bottom">
-            &copy; {% now "Y" %} MonSitePro · Tous droits réservés.
+            &copy; {% now "Y" %} EcoVoyage · Tous droits réservés.
         </div>
     </div>
 </footer>

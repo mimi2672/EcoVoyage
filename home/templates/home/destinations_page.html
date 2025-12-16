@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+{% load wagtailimages_tags %}
+
+{% block title %}Nos destinations - Mon site vitrine{% endblock %}
+
+{% block content %}
+<style>
+    /* =======================
+       Styles page "Nos destinations"
+       ======================= */
+
+    .destinations-section {
+        padding: 3rem 0;
+    }
+
+    .destinations-list-grid {
+        margin-top: 2rem;
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .destination-card-full {
+        background: rgba(255, 255, 255, 0.08); /* fond très léger */
+        backdrop-filter: blur(6px); /* effet verre dépoli */
+        border-radius: 1.5rem;
+        padding: 2rem;
+        border: 1px solid rgba(255, 255, 255, 0.2); /* bordure subtile */
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15); /* ombre douce */
+        color: #ffffff;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3); /* meilleure lisibilité */
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        max-width: 400px;
+        margin: 1rem auto;
+    }
+
+    .destination-card-full img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 1rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .destination-card-full h2 {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .destination-card-full p {
+        font-size: 1rem;
+        color: #f4f6f9;
+        margin-bottom: 0.75rem;
+    }
+
+    .destination-features {
+        font-size: 1rem;
+        color: #f6f7f9;
+        margin-left: 1.1rem;
+    }
+
+    .destination-badge-full {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: #eff0f2;
+        margin-bottom: 0.35rem;
+    }
+    
+ body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3); /* voile sombre */
+    z-index: -1;
+}
+    /* Bloc caché par défaut */
+    .destination-details {
+        display: none;
+        margin-top: 1rem;
+    }
+
+    .toggle-btn {
+        background: transparent;
+        border: 1px solid rgba(255,255,255,0.3);
+        color: #fff;
+        padding: 0.5rem 1rem;
+        border-radius: 999px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 0.9rem;
+    }
+
+    .toggle-btn:hover {
+        background: rgba(255,255,255,0.1);
+    }
+
+    /* =======================
+       Version mobile
+       ======================= */
+    @media (max-width: 768px) {
+        .destinations-section {
+            padding: 2.5rem 0;
+        }
+
+        .destinations-list-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<section class="destinations-section">
+    <div class="container">
+        <!-- Titre et sous-titre venant du modèle -->
+        <h1 class="section-title">
+            {{ page.intro_title|default:"Nos destinations" }}
+        </h1>
+        <p class="section-subtitle">
+            {{ page.intro_subtitle|default:"Retrouvez ici la liste complète des destinations proposées." }}
+        </p>
+
+        <div class="destinations-list-grid">
+            {% if page.destinations %}
+                {% for block in page.destinations %}
+                    {% if block.block_type == "destination" %}
+                        {% with destination=block.value %}
+                            <article class="destination-card-full">
+                                {% if destination.image %}
+                                    <div style="border-radius:0.9rem; overflow:hidden; margin-bottom:0.75rem;">
+                                        {% image destination.image fill-600x350 %}
+                                    </div>
+                                {% endif %}
+
+                                {% if destination.badge %}
+                                    <div class="destination-badge-full">
+                                        {{ destination.badge }}
+                                    </div>
+                                {% endif %}
+
+                                <h2>{{ destination.title }}</h2>
+
+                                <!-- Bouton En savoir + -->
+                                <button class="toggle-btn">En savoir +</button>
+
+                                <!-- Contenu caché -->
+                                <div class="destination-details">
+                                    {% if destination.description %}
+                                        <p>{{ destination.description }}</p>
+                                    {% endif %}
+
+                                    {% if destination.features %}
+                                        <ul class="destination-features">
+                                            {% for feature in destination.features %}
+                                                <li>{{ feature }}</li>
+                                            {% endfor %}
+                                        </ul>
+                                    {% endif %}
+                                </div>
+                            </article>
+                        {% endwith %}
+                    {% endif %}
+                {% endfor %}
+            {% else %}
+                <p style="color:#6b7280; font-size:0.95rem; margin-top:1.5rem;">
+                    Aucune destination n’a encore été ajoutée. Vous pouvez créer vos destinations dans l’admin Wagtail pour les voir apparaître ici.
+                </p>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- Script pour le toggle -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const buttons = document.querySelectorAll(".toggle-btn");
+    buttons.forEach(btn => {
+        btn.addEventListener("click", function() {
+            const details = this.nextElementSibling;
+            if (details.style.display === "block") {
+                details.style.display = "none";
+                this.textContent = "En savoir +";
+            } else {
+                details.style.display = "block";
+                this.textContent = "Réduire";
+            }
+        });
+    });
+});
+</script>
+{% endblock %}
