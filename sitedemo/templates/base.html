@@ -84,6 +84,13 @@
             border-bottom-color: #f9f9f9;
         }
 
+        .burger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #f9f9f9;
+         }
+
         .btn-primary {
             display: inline-block;
             padding: 0.75rem 1.4rem;
@@ -199,14 +206,33 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .nav {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.75rem;
+             .burger {
+                display: block;
             }
 
+            .nav-links a {
+                font-size: 14px;
+                padding: 6px 0;
+            }
             .nav-links {
-                flex-wrap: wrap;
+                display: none;
+                flex-direction: column;
+                gap: 0.75rem;
+                position: absolute;   /* position flottante */
+                top: 60px;            /* juste sous le header */
+                right: 1rem;          /* collé à droite */
+                background: rgba(0, 0, 0, 0.8);
+                padding: 1rem;
+                border-radius: 0.5rem;
+                width: auto;          /* largeur ajustée */
+                text-align: right;    /* texte aligné à droite */
+            }
+            .nav-links.active {
+                display: flex; /* affiché seulement quand on clique */
+            }
+
+            .nav {
+                align-items: flex-start;
             }
 
             .footer-top {
@@ -224,7 +250,10 @@
                 <!-- Logo / Nom du site -->
                 Eco<span style="color:#f9f9f9;">Voyage</span>
             </div>
-            <div class="nav-links">
+
+            <div class="burger" onclick="toggleMenu()">☰</div>
+
+            <div class="nav-links" id="navLinks">
                 <!-- Rappel navigation header (liens vers les pages principales) -->
                 <a href="/">Accueil</a>
                 <a href="/nos-destinations/">Nos destinations</a>
@@ -285,6 +314,21 @@
         </div>
     </div>
 </footer>
+
+<script>
+    function toggleMenu() {
+    const nav = document.getElementById("navLinks");
+    nav.classList.toggle("active");
+    }
+
+    // Fermer le menu quand on clique sur un lien
+    document.querySelectorAll("#navLinks a").forEach(link => {
+    link.addEventListener("click", () => {
+        document.getElementById("navLinks").classList.remove("active");
+    });
+    });
+
+</script>
 
 </body>
 </html>
